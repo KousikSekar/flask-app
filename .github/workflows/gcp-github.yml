@@ -90,5 +90,3 @@ jobs:
         # replacing the image name in the k8s template
         ./kustomize edit set image dynamic-image=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
         ./kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
-        kubectl get services -o wide
