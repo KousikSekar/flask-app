@@ -1,4 +1,4 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   generation: 5
@@ -25,10 +25,11 @@ spec:
         app: flask-app
     spec:
       containers:
-      - image: asia-south1-docker.pkg.dev/stoked-dominion-384207/images/python:0095992240a1aa0d154d7b97c2e5e0701313d2a5
+      - name : flask-app-name
+        image: asia-south1-docker.pkg.dev/stoked-dominion-384207/images/python:0095992240a1aa0d154d7b97c2e5e0701313d2a5
         imagePullPolicy: Always
         command: ["/bin/sh","-c"]
-        args: ["python manage.py cloneRepo && python manage.py shell_plus --notebook"]
+        args: ["flask run -h 0.0.0.0 -p 8080"]
         ports:
         - containerPort: 8000
           protocol: TCP
