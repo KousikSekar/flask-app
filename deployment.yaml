@@ -26,8 +26,10 @@ spec:
     spec:
       containers:
       - name : flask-app-name
-        image: asia-south1-docker.pkg.dev/stoked-dominion-384207/images/python:0095992240a1aa0d154d7b97c2e5e0701313d2a5
+        image: dynamic-image
         imagePullPolicy: Always
+        command: ["/bin/sh","-c"]
+        args: ["flask run -h 0.0.0.0 -p 8080"]
         ports:
         - containerPort: 8000
           protocol: TCP
